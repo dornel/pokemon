@@ -4,23 +4,34 @@ package com.dorneleduardo.pokemon.controller;
 import com.dorneleduardo.pokemon.DTO.PokemonDTO;
 import com.dorneleduardo.pokemon.models.PokemonModel;
 import com.dorneleduardo.pokemon.repository.PokemonRepository;
+import com.dorneleduardo.pokemon.services.ExternalApiService;
+import com.sun.tools.javac.Main;
+import io.netty.util.internal.SocketUtils;
 import jakarta.persistence.Id;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import org.apache.logging.slf4j.*;
+
 
 @RestController
 public class PokemonController {
 
+    private static final Logger logger = LoggerFactory.getLogger(PokemonController.class);
+
+
     @Autowired
     PokemonRepository pokemonRepository;
+    @Autowired
+    ExternalApiService externalApiService;
+
+
 
 
     @PostMapping("/pokemon")
@@ -67,8 +78,19 @@ public class PokemonController {
 
 
 
+    @GetMapping("/pokemon/{name}")
+    public ResponseEntity<Object> getOnePokemon(@PathVariable(value = "name")String name) {
 
-    @GetMapping("/pokemon/{id}")
+        var pokemon = externalApiService.getPokemon(name);
+
+
+         return ResponseEntity.status(HttpStatus.OK).body(pokemon);
+
+
+    }
+
+
+  /*  @GetMapping("/pokemon/{id}")
     public ResponseEntity<Object> getOnePokemon(@PathVariable(value = "id")Long id) {
 
         var pokemon = pokemonRepository.findById(id);
@@ -83,6 +105,8 @@ public class PokemonController {
 
     }
 
+
+   */
 
 }
 

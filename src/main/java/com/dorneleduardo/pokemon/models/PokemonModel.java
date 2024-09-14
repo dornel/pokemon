@@ -14,7 +14,7 @@ public class PokemonModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String type;
+    private String types;
     private String weight;
 
 
@@ -34,12 +34,12 @@ public class PokemonModel implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getTypes() {
+        return types;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypes(String type) {
+        this.types = type;
     }
 
     public String getWeight() {

@@ -1,5 +1,6 @@
 package com.dorneleduardo.pokemon;
 
+import com.dorneleduardo.pokemon.controller.PokemonController;
 import com.dorneleduardo.pokemon.models.PokemonModel;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,16 +15,12 @@ public class PokemonApplication {
 		SpringApplication.run(PokemonApplication.class, args);
 
 
-		String url = "https://pokeapi.co/api/v2/pokemon/ditto";
-
-		WebClient.Builder builder = WebClient.builder();
-
-		String catFact = builder.build().get().uri(url).retrieve().bodyToMono(String.class).block();
 
 
-		System.out.println("------------------------------------");
-		System.out.println(catFact);
-		System.out.println("------------------------------------");
+
+
+
+
 	}
 
 
