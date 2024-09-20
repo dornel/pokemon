@@ -1,7 +1,6 @@
 package com.dorneleduardo.pokemon.models;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 
 @Entity
@@ -11,12 +10,11 @@ public class PokemonModel implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String types;
-    private String weight;
-
+    private int weight;
 
     public Long getId() {
         return id;
@@ -38,15 +36,15 @@ public class PokemonModel implements Serializable {
         return types;
     }
 
-    public void setTypes(String type) {
-        this.types = type;
+    public void setTypes(String types) {
+        this.types = types;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setGender(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 }
